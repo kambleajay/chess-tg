@@ -10,7 +10,10 @@
 
 (defn knight-moves
   [col row]
-  #{[6 5] [4 5]})
+  (let [right (inc col)
+        top (inc (inc row))
+        left (dec col)]
+    #{[right top] [left top]}))
 
 (defn moves
   [piece [col row]]
