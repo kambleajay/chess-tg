@@ -3,5 +3,7 @@
 (defn moves
   [piece [col row]]
   (let [right (inc col)
-        left  (dec col)]
-    (vector [left row] [right row])))
+        left  (dec col)
+        top (inc row)
+        bottom (dec row)]
+    #{[left row] [right row] [col bottom] [col top]}))
