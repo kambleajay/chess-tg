@@ -37,9 +37,13 @@
         bottom-rank (r/bottom rank)]
     (square left-file bottom-rank)))
 
+(defn left
+  [[file rank]]
+  (square (f/left file) rank))
+
 (defn king-moves
   [square]
-  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) (bottom-left square) "C5" "C6"})
+  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) (bottom-left square) (left square) "C6"})
 
 (comment (defn knight-moves
            [col row]
