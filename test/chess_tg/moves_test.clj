@@ -10,4 +10,4 @@
 (deftest test-knight-moves
   (is (=
        (moves :knight "E3")
-       #{"F5"})))
+       #{"F5" "G4"})))

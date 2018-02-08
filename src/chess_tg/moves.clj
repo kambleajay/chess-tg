@@ -70,10 +70,17 @@
         top-by-2-rank (r/top-by 2 rank)]
     (square right-file top-by-2-rank)))
 
+(defn right-by-2-then-top
+  "Returns the square after going 2 files right and then 1 rank top, given a `file` and a `rank`."
+  [[file rank]]
+  (let [right-by-2-file (f/right-by 2 file)
+        top-rank (r/top rank)]
+    (square right-by-2-file top-rank)))
+
 (defn knight-moves
   "Takes a `square`, and returns all the possible moves for a knight."
   [square]
-  #{(top-by-2-then-right square)})
+  #{(top-by-2-then-right square) (right-by-2-then-top square)})
 
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns

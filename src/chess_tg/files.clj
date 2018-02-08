@@ -20,3 +20,10 @@
   "Returns the file that is to the left of given `file`."
   [file]
   (shift-with-fn dec file))
+
+(defn right-by
+  "Returns the file to the right at a distance of `step` from given `file`."
+  [step file]
+  (let [current-index (.indexOf files file)
+        new-index (+ current-index step)]
+    (get files new-index)))

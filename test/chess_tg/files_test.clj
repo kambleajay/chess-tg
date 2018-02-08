@@ -5,5 +5,8 @@
 (deftest test-right
   (is (= (right \C) \D)))
 
+(deftest test-right-by
+  (is (= (right-by 2 \D) \F)))
+
 (deftest test-left
   (is (= (left \H) \G)))
