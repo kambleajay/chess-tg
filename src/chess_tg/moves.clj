@@ -77,6 +77,17 @@
         top-rank (r/top rank)]
     (square right-by-2-file top-rank)))
 
+(defn go-to
+  "Returns the square that can be reached by following `next-move` from current `square`."
+  [square next-move]
+  (condp = next-move
+    :top (top square)))
+
+(defn square-at
+  "Takes a `square` and one or more `moves` and returns the square that can be reached by following `moves`."
+  [square & moves]
+  (reduce go-to square moves))
+
 (defn knight-moves
   "Takes a `square`, and returns all the possible moves for a knight."
   [square]

@@ -11,3 +11,6 @@
   (is (=
        (moves :knight "E3")
        #{"F5" "G4"})))
+
+(deftest test-square-at
+  (is (= (square-at "E3" :top) "E4")))
