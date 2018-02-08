@@ -10,7 +10,7 @@
 (deftest test-knight-moves
   (is (=
        (moves :knight "E3")
-       #{"F5" "G4"})))
+       #{"F5" "G4" "G2" "F1" "D1" "C2" "C4" "D5"})))
 
 (deftest test-square-at
   (is (= (square-at "E3" :top) "E4"))

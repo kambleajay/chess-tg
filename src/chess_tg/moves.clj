@@ -57,7 +57,7 @@
 (defn knight-moves
   "Takes a `square`, and returns all the possible moves for a knight."
   [square]
-  (squares-for-moves square [[:top :top :right] [:right :right :top]]))
+  (squares-for-moves square [[:top :top :right] [:right :right :top] [:right :right :bottom] [:bottom :bottom :right] [:bottom :bottom :left] [:left :left :bottom] [:left :left :top] [:top :top :left]]))
 
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
