@@ -45,7 +45,7 @@
   (reduce go-to square moves))
 
 (defn squares-for-moves
-  "Takes a sequence of `moves` and a `square`, and returns all squares that can be reached by following each move."
+  "Takes a sequence of sequence of `moves` and a `square`, and returns all squares that can be reached by following each sequence of moves."
   [square moves]
   (into #{} (map #(apply square-at square %1) moves)))
 
@@ -59,10 +59,22 @@
   [square]
   (squares-for-moves square [[:top :top :right] [:right :right :top] [:right :right :bottom] [:bottom :bottom :right] [:bottom :bottom :left] [:left :left :bottom] [:left :left :top] [:top :top :left]]))
 
+(def top-rights
+  "Returns a lazy sequence of moves that when followed will take to squares along the top right diagonal. "
+  (let [top (repeat :top)
+        right (repeat :right)]
+    (map #(concat (take %1 top) (take %1 right)) (iterate inc 1))))
+
+(defn bishop-moves
+  "Takes a `square`, and returns all the possible moves for a bishop."
+  [square]
+  (squares-for-moves square [[:top :right] [:top :top :right :right]]))
+
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
   all the squares it can occupy on the next move."
   [piece square]
   (condp = piece
     :king (king-moves square)
-    :knight (knight-moves square)))
+    :knight (knight-moves square)
+    :bishop (bishop-moves square)))

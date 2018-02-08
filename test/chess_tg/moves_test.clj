@@ -17,3 +17,9 @@
   (is (= (square-at "E3" :top :top :right) "F5"))
   (is (= (square-at "E3" :top :right :bottom) "F3"))
   (is (= (square-at "E3" :top :right :bottom :left) "E3")))
+
+(deftest test-top-rights
+  (is (= (take 3 top-rights) [[:top :right] [:top :top :right :right] [:top :top :top :right :right :right]])))
+
+(deftest test-bishop-moves
+  (is (= (moves :bishop "D4") #{"E5" "F6"})))
