@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="FIXME: write description" name="description" /><style type="text/css">/**
+<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="Code to calculate possible moves for chess pieces." name="description" /><style type="text/css">/**
  * SyntaxHighlighter
  * http://alexgorbatchev.com/SyntaxHighlighter
  *
@@ -2865,18 +2865,19 @@ net.brehaut.ClojureTools = (function (SH) {
     build_tree: build_tree
   };
 })(SyntaxHighlighter);
-</script><title>chess-tg -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name"><a href="http://example.com/FIXME">chess-tg</a></h1><h2 class="project-version">0.1.0-SNAPSHOT</h2><br /><p>FIXME: write description</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.8.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#chess-tg.files">chess-tg.files</a></li><li><a href="#chess-tg.moves">chess-tg.moves</a></li><li><a href="#chess-tg.ranks">chess-tg.ranks</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chess-tg.files" name="chess-tg.files"><h1 class="project-name">chess-tg.files</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</script><title>chess-tg -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name"><a href="http://example.com/FIXME">chess-tg</a></h1><h2 class="project-version">0.1.0-SNAPSHOT</h2><br /><p>Code to calculate possible moves for chess pieces.</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.8.0</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#chess-tg.files">chess-tg.files</a></li><li><a href="#chess-tg.moves">chess-tg.moves</a></li><li><a href="#chess-tg.ranks">chess-tg.ranks</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chess-tg.files" name="chess-tg.files"><h1 class="project-name">chess-tg.files</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This model represents movements in chess by files.
+  Files are columns and range from a to h.</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chess-tg.files)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def files [\A \B \C \D \E \F \G \H])</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(def files [\A \B \C \D \E \F \G \H])</pre></td></tr><tr><td class="docs"><p>Returns the new file, after applying shift function <code>fn</code> to <code>file</code>.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn- shift-with-fn
   [fn file]
   (let [current-index (.indexOf files file)
         new-index (fn current-index)]
-    (get files new-index)))</pre></td></tr><tr><td class="docs">
+    (get files new-index)))</pre></td></tr><tr><td class="docs"><p>Returns the file that is to the right of given <code>file</code>.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn right
   [file]
-  (shift-with-fn inc file))</pre></td></tr><tr><td class="docs">
+  (shift-with-fn inc file))</pre></td></tr><tr><td class="docs"><p>Returns the file that is to the left of given <code>file</code>.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn left
   [file]
   (shift-with-fn dec file))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chess-tg.moves" name="chess-tg.moves"><h1 class="project-name">chess-tg.moves</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This is a model to represent chess moves.
@@ -2933,18 +2934,19 @@ net.brehaut.ClojureTools = (function (SH) {
 </td><td class="codes"><pre class="brush: clojure">(defn moves
   [piece square]
   (condp = piece
-    :king (king-moves square)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chess-tg.ranks" name="chess-tg.ranks"><h1 class="project-name">chess-tg.ranks</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(ns chess-tg.ranks)</pre></td></tr><tr><td class="docs">
+    :king (king-moves square)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chess-tg.ranks" name="chess-tg.ranks"><h1 class="project-name">chess-tg.ranks</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>This model represents movements in chess by ranks.
+  Ranks are rows and are numbered from 1 to 8.</p>
+</td><td class="codes"><pre class="brush: clojure">(ns chess-tg.ranks)</pre></td></tr><tr><td class="docs"><p>A utility function that takes a rank <code>c</code> as character and returns it as int.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn- char-to-int
   [c]
-  (Integer/parseInt (str c)))</pre></td></tr><tr><td class="docs">
+  (Integer/parseInt (str c)))</pre></td></tr><tr><td class="docs"><p>Returns the new rank, after applying shift function <code>fn</code> to <code>rank-char</code>.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn- shift-with-fn
   [fn rank-char]
   (let [rank (char-to-int rank-char)]
-    (fn rank)))</pre></td></tr><tr><td class="docs">
+    (fn rank)))</pre></td></tr><tr><td class="docs"><p>Takes a <code>rank-char</code> and returns the rank that is at the top.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn top
   [rank-char]
-  (shift-with-fn inc rank-char))</pre></td></tr><tr><td class="docs">
+  (shift-with-fn inc rank-char))</pre></td></tr><tr><td class="docs"><p>Takes a <code>rank-char</code> and return the rank that is at the bottom.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn bottom
   [rank-char]
   (shift-with-fn dec rank-char))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/gdeer81/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a><div id="floating-toc"><ul><li class="floating-toc-li" id="floating-toc_chess-tg.files">chess-tg.files</li><li class="floating-toc-li" id="floating-toc_chess-tg.moves">chess-tg.moves</li><li class="floating-toc-li" id="floating-toc_chess-tg.ranks">chess-tg.ranks</li></ul></div></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;

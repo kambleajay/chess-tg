@@ -1,14 +1,5 @@
 # chess-tg
 
-A Clojure library designed to ... well, that part is up to you.
+This project solves the problem of calculating possible moves for some chess pieces, given a piece and its current square.
 
-## Usage
-
-FIXME
-
-## License
-
-Copyright © 2018 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+The docs are here ./docs/uberdoc.html
