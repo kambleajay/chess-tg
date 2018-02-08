@@ -4,15 +4,15 @@
   [c]
   (Integer/parseInt (str c)))
 
-(defn- change-with-fn
-  [change-fn rank-char]
+(defn- shift-with-fn
+  [fn rank-char]
   (let [rank (char-to-int rank-char)]
-    (change-fn rank)))
+    (fn rank)))
 
 (defn top
   [rank-char]
-  (change-with-fn inc rank-char))
+  (shift-with-fn inc rank-char))
 
 (defn bottom
   [rank-char]
-  (change-with-fn dec rank-char))
+  (shift-with-fn dec rank-char))
