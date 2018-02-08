@@ -81,7 +81,10 @@
   "Returns the square that can be reached by following `next-move` from current `square`."
   [square next-move]
   (condp = next-move
-    :top (top square)))
+    :top (top square)
+    :right (right square)
+    :bottom (bottom square)
+    :left (left square)))
 
 (defn square-at
   "Takes a `square` and one or more `moves` and returns the square that can be reached by following `moves`."

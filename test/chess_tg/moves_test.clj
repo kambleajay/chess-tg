@@ -13,4 +13,7 @@
        #{"F5" "G4"})))
 
 (deftest test-square-at
-  (is (= (square-at "E3" :top) "E4")))
+  (is (= (square-at "E3" :top) "E4"))
+  (is (= (square-at "E3" :top :top :right) "F5"))
+  (is (= (square-at "E3" :top :right :bottom) "F3"))
+  (is (= (square-at "E3" :top :right :bottom :left) "E3")))
