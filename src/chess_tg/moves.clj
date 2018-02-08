@@ -29,6 +29,14 @@
   (let [rank (char-to-int rank-char)]
     (square file (dec rank))))
 
+(defn bottom-right
+  [[file rank-char]]
+  (let [rank (char-to-int rank-char)
+        bottom-rank (dec rank)
+        index-of-file (.indexOf files (str file))
+        right-file (files (inc index-of-file))]
+    (square right-file bottom-rank)))
+
 (defn right
   [[file rank]]
   (let [index-of-file (.indexOf files (str file))]
@@ -37,9 +45,9 @@
 (defn top-right
   [[file rank-char]]
   (let [index-of-file (.indexOf files (str file))
-        next-file (files (inc index-of-file))
-        next-rank (inc (char-to-int rank-char))]
-    (square next-file next-rank)))
+        top-file (files (inc index-of-file))
+        right-rank (inc (char-to-int rank-char))]
+    (square top-file right-rank)))
 
 (defn go-top-by
   [col step]
@@ -51,7 +59,7 @@
 
 (defn king-moves
   [square]
-  #{(top square) (top-right square) (right square) "E4" (bottom square) "C4" "C5" "C6"})
+  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) "C4" "C5" "C6"})
 
 (defn knight-moves
   [col row]
