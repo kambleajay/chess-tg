@@ -1,5 +1,6 @@
 (ns chess-tg.moves
-  "model to represent chess moves. rows are called ranks - and are numbered 1 to 8. columns are files and are from a to h")
+  "model to represent chess moves. rows are called ranks - and are numbered 1 to 8. columns are files and are from a to h"
+  (:require [chess-tg.ranks :as r]))
 
 (def files ["A" "B" "C" "D" "E" "F" "G" "H"])
 
@@ -7,24 +8,17 @@
   [file rank]
   (str file rank))
 
-(defn char-to-int
-  [c]
-  (Integer/parseInt (str c)))
-
 (defn top
   [[file rank-char]]
-  (let [rank (char-to-int rank-char)]
-    (square file (inc rank))))
+  (square file (r/top rank-char)))
 
 (defn bottom
   [[file rank-char]]
-  (let [rank (char-to-int rank-char)]
-    (square file (dec rank))))
+  (square file (r/bottom rank-char)))
 
 (defn bottom-right
   [[file rank-char]]
-  (let [rank (char-to-int rank-char)
-        bottom-rank (dec rank)
+  (let [bottom-rank (r/bottom rank-char)
         index-of-file (.indexOf files (str file))
         right-file (files (inc index-of-file))]
     (square right-file bottom-rank)))
@@ -37,9 +31,9 @@
 (defn top-right
   [[file rank-char]]
   (let [index-of-file (.indexOf files (str file))
-        top-file (files (inc index-of-file))
-        right-rank (inc (char-to-int rank-char))]
-    (square top-file right-rank)))
+        right-file (files (inc index-of-file))
+        top-rank (r/top rank-char)]
+    (square right-file top-rank)))
 
 (defn king-moves
   [square]
