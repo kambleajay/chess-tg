@@ -8,32 +8,38 @@
   (str file rank))
 
 (defn top
-  [[file rank-char]]
-  (square file (r/top rank-char)))
+  [[file rank]]
+  (square file (r/top rank)))
 
-(defn bottom
-  [[file rank-char]]
-  (square file (r/bottom rank-char)))
-
-(defn bottom-right
-  [[file rank-char]]
+(defn top-right
+  [[file rank]]
   (let [right-file (f/right file)
-        bottom-rank (r/bottom rank-char)]
-    (square right-file bottom-rank)))
+        top-rank (r/top rank)]
+    (square right-file top-rank)))
 
 (defn right
   [[file rank]]
   (square (f/right file) rank))
 
-(defn top-right
-  [[file rank-char]]
+(defn bottom-right
+  [[file rank]]
   (let [right-file (f/right file)
-        top-rank (r/top rank-char)]
-    (square right-file top-rank)))
+        bottom-rank (r/bottom rank)]
+    (square right-file bottom-rank)))
+
+(defn bottom
+  [[file rank-char]]
+  (square file (r/bottom rank-char)))
+
+(defn bottom-left
+  [[file rank]]
+  (let [left-file (f/left file)
+        bottom-rank (r/bottom rank)]
+    (square left-file bottom-rank)))
 
 (defn king-moves
   [square]
-  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) "C4" "C5" "C6"})
+  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) (bottom-left square) "C5" "C6"})
 
 (comment (defn knight-moves
            [col row]
