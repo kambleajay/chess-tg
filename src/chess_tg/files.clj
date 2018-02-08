@@ -2,12 +2,16 @@
 
 (def files [\A \B \C \D \E \F \G \H])
 
+(defn- shift-with-fn
+  [fn file]
+  (let [current-index (.indexOf files file)
+        new-index (fn current-index)]
+    (get files new-index)))
+
 (defn right
   [file]
-  (let [index-of-file (.indexOf files file)]
-    (get files (inc index-of-file))))
+  (shift-with-fn inc file))
 
 (defn left
   [file]
-  (let [index-of-file (.indexOf files file)]
-    (get files (dec index-of-file))))
+  (shift-with-fn dec file))
