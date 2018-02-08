@@ -4,3 +4,6 @@
 
 (deftest test-top
   (is (= (top \2) 3)))
+
+(deftest test-bottom
+  (is (= (bottom \6) 5)))

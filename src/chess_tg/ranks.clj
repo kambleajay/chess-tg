@@ -1,15 +1,18 @@
 (ns chess-tg.ranks)
 
-(defn char-to-int
+(defn- char-to-int
   [c]
   (Integer/parseInt (str c)))
 
+(defn- change-with-fn
+  [change-fn rank-char]
+  (let [rank (char-to-int rank-char)]
+    (change-fn rank)))
+
 (defn top
   [rank-char]
-  (let [rank (char-to-int rank-char)]
-    (inc rank)))
+  (change-with-fn inc rank-char))
 
 (defn bottom
-  [[file rank-char]]
-  (let [rank (char-to-int rank-char)]
-    (dec rank)))
+  [rank-char]
+  (change-with-fn dec rank-char))
