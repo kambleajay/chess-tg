@@ -4,3 +4,6 @@
 
 (deftest test-right
   (is (= (right \C) \D)))
+
+(deftest test-left
+  (is (= (left \H) \G)))
