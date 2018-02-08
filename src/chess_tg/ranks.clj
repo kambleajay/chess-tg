@@ -18,6 +18,12 @@
   [rank-char]
   (shift-with-fn inc rank-char))
 
+(defn top-by
+  "Takes a `step` and a `rank`, and returns the rank that is at the top by given steps."
+  [step rank-char]
+  (let [rank (char-to-int rank-char)]
+    (nth (iterate inc rank) step)))
+
 (defn bottom
   "Takes a `rank-char` and return the rank that is at the bottom."
   [rank-char]

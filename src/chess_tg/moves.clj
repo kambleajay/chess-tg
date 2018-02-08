@@ -63,16 +63,22 @@
   [square]
   #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) (bottom-left square) (left square) (top-left square)})
 
-(comment (defn knight-moves
-           [col row]
-           (let [right (go-right col)
-                 top (inc (inc row))
-                 left (go-left col)]
-             #{[right top] [left top]})))
+(defn top-by-2-then-right
+  "Returns the square after going 2 ranks up and to right file, given a `file` and a `rank`."
+  [[file rank]]
+  (let [right-file (f/right file)
+        top-by-2-rank (r/top-by 2 rank)]
+    (square right-file top-by-2-rank)))
+
+(defn knight-moves
+  "Takes a `square`, and returns all the possible moves for a knight."
+  [square]
+  #{(top-by-2-then-right square)})
 
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
   all the squares it can occupy on the next move."
   [piece square]
   (condp = piece
-    :king (king-moves square)))
+    :king (king-moves square)
+    :knight (knight-moves square)))

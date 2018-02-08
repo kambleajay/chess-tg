@@ -5,5 +5,8 @@
 (deftest test-top
   (is (= (top \2) 3)))
 
+(deftest test-top-by
+  (is (= (top-by 3 \3) 6)))
+
 (deftest test-bottom
   (is (= (bottom \6) 5)))
