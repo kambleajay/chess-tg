@@ -41,9 +41,15 @@
   [[file rank]]
   (square (f/left file) rank))
 
+(defn top-left
+  [[file rank]]
+  (let [left-file (f/left file)
+        top-rank (r/top rank)]
+    (square left-file top-rank)))
+
 (defn king-moves
   [square]
-  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) (bottom-left square) (left square) "C6"})
+  #{(top square) (top-right square) (right square) (bottom-right square) (bottom square) (bottom-left square) (left square) (top-left square)})
 
 (comment (defn knight-moves
            [col row]
