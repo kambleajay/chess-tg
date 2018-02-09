@@ -3,7 +3,9 @@
             [chess-tg.moves :refer :all]))
 
 (deftest test-king-moves
-  (is (= (moves :king "D5") #{"D6" "E6" "E5" "E4" "D4" "C4" "C5" "C6"})))
+  (is (= (moves :king "D5") #{"D6" "E6" "E5" "E4" "D4" "C4" "C5" "C6"}))
+  (is (= (moves :king "A1") #{"A2" "B2" "B1"}))
+  (is (= (moves :king "H4") #{"H5" "G5" "G4" "G3" "H3"})))
 
 (comment (deftest test-knight-moves
            (is (=

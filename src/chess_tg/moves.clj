@@ -87,12 +87,18 @@
   [file rank [file-diff rank-diff]]
   (Integer/parseInt (str (+ file file-diff) (+ rank rank-diff))))
 
+(defn between
+  [n low high]
+  (and (>= n low) (<= n high)))
+
 (defn possible-moves
   [index]
   (let [[file-index rank-index] (split-indexes index)
         steps (for [y [-1 0 1]
                     x [-1 0 1]] [x y])
-        indexes (map #(square-for-step file-index rank-index %1) steps)]
+        all-indexes (map (fn [[f r]] (vector (+ f file-index) (+ r rank-index))) steps)
+        valid-indexes (filter (fn [[x y]] (and (between x 0 7) (between y 0 7))) all-indexes)
+        indexes (map (fn [[x y]] (Integer/parseInt (str x y))) valid-indexes)]
     (remove #{index} indexes)))
 
 (defn king-moves
