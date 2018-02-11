@@ -72,3 +72,10 @@
 
 (deftest test-top-left-seq
   (is (= (take 3 (top-left-seq "D2")) ["D2" "C3" "B4"])))
+
+(deftest test-valid-square
+  (is (true? (valid-square? "A1")))
+  (is (true? (valid-square? "H7")))
+  (is (true? (valid-square? "D4")))
+  (is (false? (valid-square? "Z3")))
+  (is (false? (valid-square? "P1"))))

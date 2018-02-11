@@ -11,6 +11,10 @@
   [file rank]
   (str file rank))
 
+(defn valid-square?
+  [[file rank]]
+  (and (f/valid-file? file) (r/valid-rank? rank)))
+
 (defn top
   "Takes a `file` and a `rank` and returns the square that is at the top."
   [[file rank]]

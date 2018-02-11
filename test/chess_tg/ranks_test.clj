@@ -5,8 +5,12 @@
 (deftest test-top
   (is (= (top \2) 3)))
 
-(deftest test-top-by
-  (is (= (top-by 3 \3) 6)))
-
 (deftest test-bottom
   (is (= (bottom \6) 5)))
+
+(deftest test-valid-rank
+  (is (true? (valid-rank? \0)))
+  (is (true? (valid-rank? \3)))
+  (is (true? (valid-rank? \7)))
+  (is (false? (valid-rank? \8)))
+  (is (false? (valid-rank? \9))))

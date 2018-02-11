@@ -5,8 +5,9 @@
 (deftest test-right
   (is (= (right \C) \D)))
 
-(deftest test-right-by
-  (is (= (right-by 2 \D) \F)))
-
 (deftest test-left
   (is (= (left \H) \G)))
+
+(deftest test-valid-file
+  (is (true? (valid-file? \A)))
+  (is (false? (valid-file? \Z))))
