@@ -38,3 +38,8 @@
   "B2" "C1"
   "G4" "H3"
   "D4" "E3")
+
+(defmovetest test-bottom-left bottom-left
+  "H8" "G7"
+  "G5" "F4"
+  "B6" "A5")
