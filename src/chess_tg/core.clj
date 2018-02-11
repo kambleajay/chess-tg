@@ -10,7 +10,7 @@
   (letfn [(move-by-2 [seq-fn square']
             (last (take 3 (seq-fn square'))))]
     (set
-     (filter #(not (nil? %))
+     (remove nil?
              (flatten
               (vector
                ((juxt m/right m/left) (move-by-2 m/top-seq square))
