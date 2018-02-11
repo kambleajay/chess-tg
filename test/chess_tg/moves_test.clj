@@ -29,3 +29,17 @@
     "B1" "A1"
     "F5" "E5"
     "C7" "B7"))
+
+(deftest test-top-right
+  (are [square expected]
+      (= (top-right square) expected)
+    "E4" "F5"
+    "A1" "B2"
+    "D6" "E7"))
+
+(deftest test-bottom-right
+  (are [square expected]
+      (= (bottom-right square) expected)
+    "B2" "C1"
+    "G4" "H3"
+    "D4" "E3"))
