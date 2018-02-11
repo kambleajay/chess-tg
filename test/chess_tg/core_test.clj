@@ -9,7 +9,8 @@
 
 (deftest test-knight-moves
   (is (= (moves :knight "E3") #{"F5" "G4" "G2" "F1" "D1" "C2" "C4" "D5"}))
-  (is (= (moves :knight "A1") #{"B3" "C2"})))
+  (is (= (moves :knight "A1") #{"B3" "C2"}))
+  (is (= (moves :knight "F7") #{"H8" "H6" "D8" "D6" "E5" "G5"})))
 
 (comment (deftest test-bishop-moves
            (is (= (moves :bishop "F4") #{"G5" "H6"}))))
