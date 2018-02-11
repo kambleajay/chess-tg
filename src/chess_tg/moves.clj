@@ -47,6 +47,20 @@
   [[file rank]]
   (square (f/left file) (r/top rank)))
 
+#_(defmacro gen-moves-sequences
+    [& clauses]
+    (let [pairs (partition 2 clauses)]
+      (for [[f-name f] pairs]
+        `(defn (symbol f-name)
+           [square#]
+           (iterate ~f square#)))))
+
+#_(gen-moves-sequences
+   "top-seq" top
+   "right-seq" right
+   "bottom-seq" bottom
+   "left-seq" left)
+
 (defn top-seq
   [square]
   (iterate top square))
@@ -62,6 +76,22 @@
 (defn left-seq
   [square]
   (iterate left square))
+
+(defn top-right-seq
+  [square]
+  (iterate top-right square))
+
+(defn bottom-right-seq
+  [square]
+  (iterate bottom-right square))
+
+(defn bottom-left-seq
+  [square]
+  (iterate bottom-left square))
+
+(defn top-left-seq
+  [square]
+  (iterate top-left square))
 
 #_(defn go-to
     "Returns the square that can be reached by following `next-move` from current `square`."
