@@ -22,3 +22,10 @@
     "D4" "E4"
     "A1" "B1"
     "G8" "H8"))
+
+(deftest test-left
+  (are [square expected]
+      (= (left square) expected)
+    "B1" "A1"
+    "F5" "E5"
+    "C7" "B7"))
