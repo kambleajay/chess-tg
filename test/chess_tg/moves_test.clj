@@ -3,8 +3,15 @@
             [chess-tg.moves :refer :all]))
 
 (deftest test-top
-  (are [expected square]
-      (= expected (top square))
-    "E5" "E4"
-    "H2" "H1"
-    "C8" "C7"))
+  (are [square expected]
+      (= (top square) expected)
+    "E4" "E5"
+    "H1" "H2"
+    "C7" "C8"))
+
+(deftest test-bottom
+  (are [square expected]
+      (= (bottom square) expected)
+    "C3" "C2"
+    "H8" "H7"
+    "F4" "F3"))
