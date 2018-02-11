@@ -43,6 +43,10 @@
   [[file rank]]
   (square (f/left file) (r/bottom rank)))
 
+(defn top-left
+  [[file rank]]
+  (square (f/left file) (r/top rank)))
+
 #_(defn go-to
     "Returns the square that can be reached by following `next-move` from current `square`."
     [square next-move]

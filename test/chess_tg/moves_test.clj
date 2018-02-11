@@ -43,3 +43,8 @@
   "H8" "G7"
   "G5" "F4"
   "B6" "A5")
+
+(deftest test-top-left top-left
+  "C1" "B2"
+  "E4" "D5"
+  "D6" "C7")
