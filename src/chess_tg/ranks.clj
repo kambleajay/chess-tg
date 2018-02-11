@@ -10,9 +10,10 @@
 (defn- shift-with-fn
   "Returns the new rank, after applying shift function `fn` to `rank-char`."
   [f rank-char limit-fn]
-  (let [rank (char-to-int rank-char)]
-    (when-not (limit-fn rank)
-      (f rank))))
+  (when-not (nil? rank-char)
+    (let [rank (char-to-int rank-char)]
+      (when-not (limit-fn rank)
+        (f rank)))))
 
 (defn top
   "Takes a `rank-char` and returns the rank that is at the top."

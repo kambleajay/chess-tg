@@ -10,12 +10,13 @@
   (letfn [(move-by-2 [seq-fn square']
             (last (take 3 (seq-fn square'))))]
     (set
-     (flatten
-      (vector
-       ((juxt m/right m/left) (move-by-2 m/top-seq square))
-       ((juxt m/top m/bottom) (move-by-2 m/right-seq square))
-       ((juxt m/right m/left) (move-by-2 m/bottom-seq square))
-       ((juxt m/top m/bottom) (move-by-2 m/left-seq square)))))))
+     (filter #(not (nil? %))
+             (flatten
+              (vector
+               ((juxt m/right m/left) (move-by-2 m/top-seq square))
+               ((juxt m/top m/bottom) (move-by-2 m/right-seq square))
+               ((juxt m/right m/left) (move-by-2 m/bottom-seq square))
+               ((juxt m/top m/bottom) (move-by-2 m/left-seq square))))))))
 
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
