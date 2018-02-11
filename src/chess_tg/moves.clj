@@ -9,7 +9,8 @@
 (defn square
   "Takes a `file` and a `rank` (both are characters) and returns a string that represents the square having given file and rank."
   [file rank]
-  (str file rank))
+  (when-not (or (nil? file) (nil? rank))
+    (str file rank)))
 
 (defn valid-square?
   [[file rank]]

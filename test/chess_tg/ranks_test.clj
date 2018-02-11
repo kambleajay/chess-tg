@@ -3,10 +3,12 @@
             [chess-tg.ranks :refer :all]))
 
 (deftest test-top
-  (is (= (top \2) 3)))
+  (is (= (top \2) 3))
+  (is (nil? (top \8))))
 
 (deftest test-bottom
-  (is (= (bottom \6) 5)))
+  (is (= (bottom \6) 5))
+  (is (nil? (bottom \1))))
 
 (deftest test-valid-rank
   (is (false? (valid-rank? \0)))
