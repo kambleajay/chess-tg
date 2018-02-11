@@ -44,6 +44,21 @@
              (take-while #(not (nil? %)) (m/bottom-left-seq square))
              (take-while #(not (nil? %)) (m/top-left-seq square)))))))
 
+(defn rook-moves
+  [square]
+  (set
+   (remove #(= % square)
+           (flatten
+            (vector
+             (take-while #(not (nil? %)) (m/top-seq square))
+             (take-while #(not (nil? %)) (m/right-seq square))
+             (take-while #(not (nil? %)) (m/bottom-seq square))
+             (take-while #(not (nil? %)) (m/left-seq square)))))))
+
+(defn pawn-moves
+  [square]
+  (m/top square))
+
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
   all the squares it can occupy on the next move."
@@ -52,4 +67,6 @@
     :king (king-moves square)
     :knight (knight-moves square)
     :bishop (bishop-moves square)
-    :queen (queen-moves square)))
+    :queen (queen-moves square)
+    :rook (rook-moves square)
+    :pawn (pawn-moves square)))
