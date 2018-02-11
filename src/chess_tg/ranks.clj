@@ -26,4 +26,4 @@
 (defn valid-rank?
   [rank-char]
   (let [rank (char-to-int rank-char)]
-    (and (>= rank 0) (<= rank 7))))
+    (and (>= rank 1) (<= rank 8))))

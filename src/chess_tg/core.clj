@@ -1,8 +1,9 @@
-(ns chess-tg.core)
+(ns chess-tg.core
+  (:require [chess-tg.moves :as m]))
 
 (defn king-moves
   [square]
-  nil)
+  (set (filter m/valid-square? ((juxt m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left) square))))
 
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
