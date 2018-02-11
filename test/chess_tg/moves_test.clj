@@ -15,3 +15,10 @@
     "C3" "C2"
     "H8" "H7"
     "F4" "F3"))
+
+(deftest test-right
+  (are [square expected]
+      (= (right square) expected)
+    "D4" "E4"
+    "A1" "B1"
+    "G8" "H8"))
