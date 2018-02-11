@@ -44,7 +44,19 @@
   "G5" "F4"
   "B6" "A5")
 
-(deftest test-top-left top-left
+(defmovetest test-top-left top-left
   "C1" "B2"
   "E4" "D5"
   "D6" "C7")
+
+(deftest test-top-seq
+  (is (= (take 3 (top-seq "A1")) ["A1" "A2" "A3"])))
+
+(deftest test-right-seq
+  (is (= (take 2 (right-seq "D5")) ["D5" "E5"])))
+
+(deftest test-bottom-seq
+  (is (= (take 3 (bottom-seq "C4")) ["C4" "C3" "C2"])))
+
+(deftest test-left-seq
+  (is (= (take 3 (left-seq "H3")) ["H3" "G3" "F3"])))

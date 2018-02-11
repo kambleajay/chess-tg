@@ -47,6 +47,22 @@
   [[file rank]]
   (square (f/left file) (r/top rank)))
 
+(defn top-seq
+  [square]
+  (iterate top square))
+
+(defn right-seq
+  [square]
+  (iterate right square))
+
+(defn bottom-seq
+  [square]
+  (iterate bottom square))
+
+(defn left-seq
+  [square]
+  (iterate left square))
+
 #_(defn go-to
     "Returns the square that can be reached by following `next-move` from current `square`."
     [square next-move]
