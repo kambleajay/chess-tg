@@ -18,6 +18,17 @@
                ((juxt m/right m/left) (move-by-2 m/bottom-seq square))
                ((juxt m/top m/bottom) (move-by-2 m/left-seq square))))))))
 
+(defn bishop-moves
+  [square]
+  (set
+   (remove #(= % square)
+           (flatten
+            (vector
+             (take-while #(not (nil? %)) (m/top-right-seq square))
+             (take-while #(not (nil? %)) (m/bottom-right-seq square))
+             (take-while #(not (nil? %)) (m/bottom-left-seq square))
+             (take-while #(not (nil? %)) (m/top-left-seq square)))))))
+
 (defn moves
   "Takes a `piece` and the current `square` it occupies, and returns
   all the squares it can occupy on the next move."
@@ -25,5 +36,4 @@
   (condp = piece
     :king (king-moves square)
     :knight (knight-moves square)
-    ;;:bishop (bishop-moves square)
-    ))
+    :bishop (bishop-moves square)))
