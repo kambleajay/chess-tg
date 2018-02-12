@@ -5,6 +5,10 @@
   [f square]
   (take-while #(not (nil? %)) (f square)))
 
+(defn valid-squares-from
+  [square & fs]
+  (reduce (fn [acc next-f] (conj acc (valid-seq-of next-f square))) [] fs))
+
 (defn king-moves
   [square]
   (set (filter m/valid-square? ((juxt m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left) square))))
@@ -27,28 +31,22 @@
   (set
    (remove #(= % square)
            (flatten
-            (vector (valid-seq-of m/top-right-seq square) (valid-seq-of m/bottom-right-seq square)
-                    (valid-seq-of m/bottom-left-seq square) (valid-seq-of m/top-left-seq square))))))
+            (valid-squares-from square m/top-right-seq m/bottom-right-seq m/bottom-left-seq m/top-left-seq)))))
 
 (defn queen-moves
   [square]
   (set
    (remove #(= % square)
            (flatten
-            (vector
-             (valid-seq-of m/top-seq square) (valid-seq-of m/right-seq square)
-             (valid-seq-of m/bottom-seq square) (valid-seq-of m/left-seq square)
-             (valid-seq-of m/top-right-seq square) (valid-seq-of m/bottom-right-seq square)
-             (valid-seq-of m/bottom-left-seq square) (valid-seq-of m/top-left-seq square))))))
+            (valid-squares-from square m/top-seq m/right-seq m/bottom-seq m/left-seq
+                                m/top-right-seq m/bottom-right-seq m/bottom-left-seq m/top-left-seq)))))
 
 (defn rook-moves
   [square]
   (set
    (remove #(= % square)
            (flatten
-            (vector
-             (valid-seq-of m/top-seq square) (valid-seq-of m/right-seq square)
-             (valid-seq-of m/bottom-seq square) (valid-seq-of m/left-seq square))))))
+            (valid-squares-from square m/top-seq m/right-seq m/bottom-seq m/left-seq)))))
 
 (defn pawn-moves
   [square]
