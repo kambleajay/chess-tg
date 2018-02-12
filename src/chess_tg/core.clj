@@ -1,6 +1,10 @@
 (ns chess-tg.core
   (:require [chess-tg.moves :as m]))
 
+(defn valid-seq-of
+  [f square]
+  (take-while #(not (nil? %)) (f square)))
+
 (defn king-moves
   [square]
   (set (filter m/valid-square? ((juxt m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left) square))))
@@ -23,11 +27,8 @@
   (set
    (remove #(= % square)
            (flatten
-            (vector
-             (take-while #(not (nil? %)) (m/top-right-seq square))
-             (take-while #(not (nil? %)) (m/bottom-right-seq square))
-             (take-while #(not (nil? %)) (m/bottom-left-seq square))
-             (take-while #(not (nil? %)) (m/top-left-seq square)))))))
+            (vector (valid-seq-of m/top-right-seq square) (valid-seq-of m/bottom-right-seq square)
+                    (valid-seq-of m/bottom-left-seq square) (valid-seq-of m/top-left-seq square))))))
 
 (defn queen-moves
   [square]
@@ -35,14 +36,10 @@
    (remove #(= % square)
            (flatten
             (vector
-             (take-while #(not (nil? %)) (m/top-seq square))
-             (take-while #(not (nil? %)) (m/right-seq square))
-             (take-while #(not (nil? %)) (m/bottom-seq square))
-             (take-while #(not (nil? %)) (m/left-seq square))
-             (take-while #(not (nil? %)) (m/top-right-seq square))
-             (take-while #(not (nil? %)) (m/bottom-right-seq square))
-             (take-while #(not (nil? %)) (m/bottom-left-seq square))
-             (take-while #(not (nil? %)) (m/top-left-seq square)))))))
+             (valid-seq-of m/top-seq square) (valid-seq-of m/right-seq square)
+             (valid-seq-of m/bottom-seq square) (valid-seq-of m/left-seq square)
+             (valid-seq-of m/top-right-seq square) (valid-seq-of m/bottom-right-seq square)
+             (valid-seq-of m/bottom-left-seq square) (valid-seq-of m/top-left-seq square))))))
 
 (defn rook-moves
   [square]
@@ -50,10 +47,8 @@
    (remove #(= % square)
            (flatten
             (vector
-             (take-while #(not (nil? %)) (m/top-seq square))
-             (take-while #(not (nil? %)) (m/right-seq square))
-             (take-while #(not (nil? %)) (m/bottom-seq square))
-             (take-while #(not (nil? %)) (m/left-seq square)))))))
+             (valid-seq-of m/top-seq square) (valid-seq-of m/right-seq square)
+             (valid-seq-of m/bottom-seq square) (valid-seq-of m/left-seq square))))))
 
 (defn pawn-moves
   [square]
