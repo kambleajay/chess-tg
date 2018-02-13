@@ -9,4 +9,7 @@ This project solves the problem of calculating possible moves for some chess pie
 * Next, we have 8 infinite movements for each directions (example, keep going to top or right).
 * With these building blocks all moves can be represented.
 
+### How to Run
+* Execute: ./moves king D4
+
 The docs are here ./docs/uberdoc.html (out of sync, though).

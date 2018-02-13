@@ -63,3 +63,9 @@
     :queen (queen-moves square)
     :rook (rook-moves square)
     :pawn (pawn-moves square)))
+
+(defn -main
+  [& args]
+  (let [piece (keyword (nth args 0))
+        square (nth args 1)]
+    (println (moves piece square))))

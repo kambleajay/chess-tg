@@ -5,4 +5,5 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]]
   :plugins [[lein-marginalia "0.9.1"]
-            [lein-kibit "0.1.5"]])
+            [lein-kibit "0.1.5"]]
+  :main chess-tg.core)
