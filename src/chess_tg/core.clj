@@ -20,40 +20,50 @@
   [square]
   (squares-at square m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left))
 
+(defn move-by-2
+  [seq-fn square']
+  (last (take 3 (seq-fn square'))))
+
+(defn move-by-2-then-pick-adjacent-squares
+  [direction square]
+  (condp = direction
+    :top ((juxt m/right m/left) (move-by-2 m/top-seq square))
+    :right ((juxt m/top m/bottom) (move-by-2 m/right-seq square))
+    :bottom ((juxt m/right m/left) (move-by-2 m/bottom-seq square))
+    :left ((juxt m/top m/bottom) (move-by-2 m/left-seq square))))
+
 (defn knight-moves
   [square]
-  (letfn [(move-by-2 [seq-fn square']
-            (last (take 3 (seq-fn square'))))]
-    (set
-     (remove nil?
-             (flatten
-              (vector
-               ((juxt m/right m/left) (move-by-2 m/top-seq square))
-               ((juxt m/top m/bottom) (move-by-2 m/right-seq square))
-               ((juxt m/right m/left) (move-by-2 m/bottom-seq square))
-               ((juxt m/top m/bottom) (move-by-2 m/left-seq square))))))))
+  (->> (vector
+        (move-by-2-then-pick-adjacent-squares :top square)
+        (move-by-2-then-pick-adjacent-squares :right square)
+        (move-by-2-then-pick-adjacent-squares :bottom square)
+        (move-by-2-then-pick-adjacent-squares :left square))
+       flatten
+       (remove nil?)
+       set))
 
 (defn bishop-moves
   [square]
-  (set
-   (remove #(= % square)
-           (flatten
-            (valid-squares-from square m/top-right-seq m/bottom-right-seq m/bottom-left-seq m/top-left-seq)))))
+  (->> (valid-squares-from square m/top-right-seq m/bottom-right-seq m/bottom-left-seq m/top-left-seq)
+       flatten
+       (remove #(= % square))
+       set))
 
 (defn queen-moves
   [square]
-  (set
-   (remove #(= % square)
-           (flatten
-            (valid-squares-from square m/top-seq m/right-seq m/bottom-seq m/left-seq
-                                m/top-right-seq m/bottom-right-seq m/bottom-left-seq m/top-left-seq)))))
+  (->> (valid-squares-from square m/top-seq m/right-seq m/bottom-seq m/left-seq
+                           m/top-right-seq m/bottom-right-seq m/bottom-left-seq m/top-left-seq)
+       flatten
+       (remove #(= % square))
+       set))
 
 (defn rook-moves
   [square]
-  (set
-   (remove #(= % square)
-           (flatten
-            (valid-squares-from square m/top-seq m/right-seq m/bottom-seq m/left-seq)))))
+  (->> (valid-squares-from square m/top-seq m/right-seq m/bottom-seq m/left-seq)
+       flatten
+       (remove #(= % square))
+       set))
 
 (defn pawn-moves
   [square]
