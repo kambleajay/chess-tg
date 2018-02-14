@@ -9,9 +9,16 @@
   [square & fs]
   (reduce (fn [acc next-f] (conj acc (valid-seq-of next-f square))) [] fs))
 
+(defn squares-at
+  [square & moves]
+  (->> square
+       ((juxt m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left))
+       (filter m/valid-square?)
+       set))
+
 (defn king-moves
   [square]
-  (set (filter m/valid-square? ((juxt m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left) square))))
+  (squares-at square m/top m/right m/bottom m/left m/top-right m/bottom-right m/bottom-left m/top-left))
 
 (defn knight-moves
   [square]
